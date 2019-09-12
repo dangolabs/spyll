@@ -5,7 +5,7 @@ logging.getLogger(__name__).info("Made using Spyll")
 __author__="Tinos Psomadakis"
 __copyright__="Copyright (c) 2019 Tinos Psomadakis"
 __credits__ = [""]
-__version__ = "0.1"
+__version__ = "0.11"
 __maintainer__ = "Tinos Psomadakis"
 __email__ = "me@hellotinos.com"
 __status__ = "Alpha"
@@ -83,7 +83,7 @@ def help():
 def changelog():
     print(
     '''
-    Currently running spyll Version 0.1
+    Currently running spyll Version 0.11
     Changelog:
 
     - Hello World
@@ -94,6 +94,11 @@ def changelog():
     - Added write feature
     - Added help command
     - Added changelog command
+
+    Version 0.11
+
+    - Improved README
+    - Made the file opening as + to avoid errors
 
     '''
     )

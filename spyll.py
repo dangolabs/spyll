@@ -9,7 +9,7 @@ def read(file=None, split=None):
         return
 
     file = str(file)
-    with open(file,"r") as file:
+    with open(file,"r+") as file:
         text = file.read()
         if split == None or split == False:
             pass
@@ -33,7 +33,7 @@ def search(file=None, text=None):
         return
 
     file = str(file)
-    with open(file,"r") as file:
+    with open(file,"r+") as file:
         read_text = file.read()
         if text in read_text:
             return True
@@ -53,7 +53,7 @@ def count(file=None, text=None):
         return
 
     file = str(file)
-    with open(file,"r") as file:
+    with open(file,"r+") as file:
         read_text = file.read()
         return read_text.count(text)
 
@@ -101,5 +101,5 @@ def write(file=None, text=None, split=None):
 
 
 
-    with open(file,"w") as file:
+    with open(file,"w+") as file:
         file.write(text)
