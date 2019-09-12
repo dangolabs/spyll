@@ -15,6 +15,7 @@
 
 <p>Writes to a specified text file with optional split which is only available for tuples and lists.</p>
 <h3> Example </h3>
+
 ```python
 import spyll
 
@@ -38,6 +39,7 @@ print(text)
 
 <p>Checks to see if the file contains the specified value</p>
 <h3> Example </h3>
+
 ```python
 import spyll
 
@@ -49,6 +51,7 @@ if spyll.search(file="./folder/Hello_World.txt", "username"):
 
 <p>Counts the amount of time a value appears in a text file</p>
 <h3> Example </h3>
+
 ```python
 import spyll
 
