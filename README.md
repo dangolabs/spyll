@@ -26,6 +26,7 @@ spyll.write(file="./folder/Goodbye_World.txt", text=["First Line", "Second Line"
 
 <p>Simply reads text file to string</p>
 <h3> Example </h3>
+
 ```python
 import spyll
 
