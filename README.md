@@ -1,4 +1,4 @@
-<h1>Spyll 0.11</h1>
+<h1>Spyll 0.12</h1>
 
 <h2>Welcome</h2>
 <p>Spyll is an Open-Source Python package that is aimed at making txt file management easier. It was made in python 3.7 and should work on all versions higher than 3.0.</p>
@@ -46,26 +46,3 @@ import spyll
 if spyll.search(file="./folder/Hello_World.txt", "username"):
   print("Contains Username!")
 ```
-
-<h2>spyll.count(file, text)</h2>
-
-<p>Counts the amount of time a value appears in a text file</p>
-<h3> Example </h3>
-
-```python
-import spyll
-
-value = spyll.count(file="./folder/romeo_and_juliet.txt", "?")
-print(f"There are {value} questions in Romeo and Juliet!")
-```
-
-<h1>To do</h1>
-<ul>
-<li>Appending files</li>
-<li>Creating files</li>
-<li>Deleting files</li>
-<li>Renaming files</li>
-<li>Add to website</li>
-<li>Get file information</li>
-<li>Copy/Paste file</li>
-</ul>

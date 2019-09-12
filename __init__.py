@@ -83,7 +83,7 @@ def help():
 def changelog():
     print(
     '''
-    Currently running spyll Version 0.11
+    Currently running spyll Version 0.12
     Changelog:
 
     - Hello World
@@ -99,6 +99,10 @@ def changelog():
 
     - Improved README
     - Made the file opening as + to avoid errors
+
+    Version 0.12
+
+    - README formatting errors
 
     '''
     )
