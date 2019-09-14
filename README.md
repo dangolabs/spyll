@@ -1,4 +1,4 @@
-<h1>Spyll 0.12</h1>
+<h1>Spyll 1.0</h1>
 
 <h2>Welcome</h2>
 <p>Spyll is an Open-Source Python package that is aimed at making txt file management easier. It was made in python 3.7 and should work on all versions higher than 3.0.</p>
@@ -46,3 +46,54 @@ import spyll
 if spyll.search(file="./folder/Hello_World.txt", "username"):
   print("Contains Username!")
 ```
+
+<h1>Why use Spyll?</h1>
+
+<h2>Spyll was created to make managing python text files much easier to work with. It's purpose is to turn multi-line code snippets into a single function.<h2>
+
+<h2> Comparisons </h2>
+
+<h3> Normal Python </h3>
+
+```python
+
+sentence = ["Wow, ","I","Love","Python"]
+text=""
+with open("directory_to_file", "w") as file:
+  for i in sentence:
+    text+=f"{i} "
+  file.write(text)
+
+with open("directory_to_file", "r") as file:
+  value = file.read()
+
+with open("directory_to_file", "r") as file:
+  value = file.read()
+  if "username" in file:
+    print("Username spotted!")
+
+with open("directory_to_file", "r") as file:
+  text = file.read()
+  number = text.count("username")
+```
+
+<h3> Using Spyll </h3>
+
+```python
+import spyll
+
+sentence = ["Wow, ","I","Love","Python"]
+spyll.write("directory_to_file", sentence, " ")
+
+value = spyll.read("directory_to_file")
+
+if spyll.search("directory_to_file", "username"):
+  print("Username spotted!")
+
+number = spyll.count("directory_to_file","username")
+
+```
+
+<h1> Contribute! </h1>
+
+[GitHub Page](https://github.com/pTinosq/spyll)

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="spyll",
-    version="0.12",
+    version="1.0",
     author="Tinos Psomadakis",
     author_email="me@hellotinos.com",
     description="Spyll is an Open-Source Python package that is aimed at making txt file management easier. It was made in python 3.7 and should work on all versions higher than 3.0.",
