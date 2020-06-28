@@ -1,5 +1,5 @@
-./pypi_upload.txt
-./setup.py
-./spyll.egg-info
-./docs
-./dist
+/pypi_upload.txt
+/setup.py
+/spyll.egg-info
+/docs
+/dist
