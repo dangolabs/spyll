@@ -1,17 +1,13 @@
 # Spyll by Dango Labs
-## Text file handling made simple.
-
-<br>
-
+### Text file handling made simple.
+---
 ## Compatability
 Spyll will only work on machines running Python 3.6+
 
 ## Installation
-Spyll is PyPi so you can install it with<br>
+Spyll is on PyPi so you can install it with the following command:
 
 `pip install Spyll`
-
-<br>
 
 ## Supported features
 * Writing to text files
