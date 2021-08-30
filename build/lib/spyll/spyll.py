@@ -1,231 +1,193 @@
 import os
 import shutil
 
+
 def read(file=None, split=None):
+    """Reads text file
 
+    Parameters
+    ----------
+    file : str
+        The file location
+    split : str, optional
+        The character to split the file contents. Default is None.
+
+    Returns
+    -------
+    str
+        The file contents
+
+    OR
+    list of str (Only if split is not None)
+        The file contents split by the split parameter
+    """
     os.chdir(os.getcwd())
-
     if file is None:
-        raise FileNotFoundError("You haven't specified a file. Usage:\n spyll.read(file=\"directory_to_file\")")
-        return
+        raise FileNotFoundError("File not specified.")
 
-    file = str(file)
-    with open(file,"r+") as file:
-        text = file.read()
+    with open(str(file), "r+") as file:
+        content = file.read()
         if split is None or split is False:
             pass
 
         else:
-            text = text.split(str(split))
+            content = content.split(str(split))
+
+    return content
 
 
-    return text
+def contains(haystack=None, needle=None):
+    """Checks if a file (haystack) contains a specified string (needle). It's like looking for a needle in a haystack!
 
-def search(file=None, text=None):
+    Parameters
+    ----------
+    haystack : str
+        The file location
+    text : str
+        The text to search for in the file.
 
+    Returns
+    -------
+    bool
+        True if the file contains the text, otherwise False.
+    """
     os.chdir(os.getcwd())
 
-    if file is None:
-        raise FileNotFoundError("You haven't specified a file. Usage:\n spyll.search(file=\"directory_to_file\")")
-        return
+    if haystack is None:
+        raise FileNotFoundError("File not specified.")
 
-    if text is None:
-        raise ValueError("You haven't specified any text to search for. Usage:\n spyll.search(file='directory_to_file', text='Hello World')")
-        return
+    if needle is None:
+        raise ValueError("No needle specified.")
 
-    file = str(file)
-    with open(file,"r+") as file:
-        read_text = file.read()
-        if text in read_text:
+    with open(str(haystack), "r+") as haystack:
+        read_text = haystack.read()
+        if needle in read_text:
             return True
         else:
             return False
 
+
 def count(file=None, text=None):
+    """Counts occurances of a string in a file.
 
+    Parameters
+    ----------
+    file : str
+        The file location
+    text : str, optional
+        The text to search for in the file. If None, it will return the amount of characters in the file.
+
+    Returns
+    -------
+    int
+        The number of times the text occurs in the file.
+    """
     os.chdir(os.getcwd())
 
     if file is None:
-        raise FileNotFoundError("You haven't specified a file. Usage:\n spyll.count(file=\"directory_to_file\")")
-        return
+        raise FileNotFoundError("File not specified.")
 
-    if text is None:
-        raise ValueError("You haven't specified any text to count. Usage:\n spyll.count(file='directory_to_file', text=' ')")
-        return
+    with open(str(file), "r+") as file:
+        if text is None:
+            return len(file.read())
+        else:
+            return file.read().count(text)
 
-    file = str(file)
-    with open(file,"r+") as file:
-        read_text = file.read()
-        return read_text.count(text)
 
-def write(file=None, text=None, split=None):
+def write(file=None, content=None, split=""):
+    """Writes content to a text file.
 
+    Parameters
+    ----------
+    file : str
+        The file location
+    content : str, list, or tuple, optional
+        The text to write to the file. If None, an empty file will be created.
+    split : str, optional
+        The character to split the file contents. Default is "".
+
+    Returns
+    -------
+    bool
+        True if the file was created, otherwise False.
+    """
     os.chdir(os.getcwd())
 
-    file = str(file)
-
     if file is None:
-        raise FileNotFoundError("You haven't specified a file. Usage:\n spyll.write(file=\"directory_to_file\")")
-        return
+        raise FileNotFoundError("File not specified.")
 
-    if text is None:
-        raise ValueError("You haven't specified any text. Usage:\n spyll.write(file='directory_to_file', text='Hello World')")
-        return
+    if content is None:
+        with open(file, "w+") as file:
+            file.write("")
+            return True
 
-    is_list=False
+    if type(content) is str:
+        with open(file, "w+") as file:
+            file.write(content)
+            return True
 
-    if type(text) == list or type(text) == tuple:
-        is_list=True
+    if type(content) is list or type(content) is tuple:
+        with open(file, "w+") as file:
+            for i in content:
+                file.write(f"{i}{split}")
+            return True
 
-    if split != None and is_list != True:
-        raise ValueError("You can only split inputs of type list. Usage: spyll.write(file='directory.txt', text=['hello','world'], split='\\n')")
-        return
+    return False
 
-    if split != None and is_list:
-        newtext = ""
-        for i in text:
-            if len(text) - (text.index(i)) == 1:
-                newtext+=f"{i}"
-            else:
-                newtext+=f"{i}{split}"
-        text=newtext
-
-    if split is None and is_list:
-        newtext = ""
-        for i in text:
-            if len(text) - (text.index(i)) == 1:
-                newtext+=f"{i}"
-            else:
-                newtext+=f"{i} "
-        text=newtext
-
-
-
-    with open(file,"w+") as file:
-        file.write(text)
 
 def rename(file=None, name=None):
-    SplitFile=file.split(".")
-    print(f"{len(SplitFile)} file")
-    if len(SplitFile) > 1:
-        pass
+    """Renames a text file.
+
+    Parameters
+    ----------
+    file : str
+        The file location
+    name : str
+        The new name for the file.
+
+    Returns
+    -------
+    str
+        The new file location.
+    """
+    if "." not in file:
+        raise ValueError("Invalid file - no file type found.")
+
+    if "/" in name:
+        raise ValueError("Invalid name (Includes /)")
+
+    if "/" in file:
+        file_path = file.split("/")[:-1]
+        file_path = "/".join(file_path)
+
     else:
-        raise ValueError("The file you entered isn't valid. You must include the file. For example, dir/hello/scripts/world.txt")
-        return
-    SplitName = name.split(".")
-    print(f"{len(SplitName)} name")
-    if len(SplitName) > 1:
-        fileEnding = SplitName[-1]
-    else:
-        fileEnding = SplitFile[-1]
+        file_path = os.getcwd().replace("\\", "/")
 
-    if len(name.split(".")) > 1:
-        name = name.split(".")[:-1]
-        fullname=""
-        for i in name:
-            if len(name) - (name.index(i)) == 1:
-                fullname+=f"{i}"
-            else:
-                fullname+=f"{i}."
-        name=fullname
+    file_type = file.split(".")[-1]
+    os.rename(file, f"{file_path}/{name}.{file_type}")
 
-    newName = f"{name}.{fileEnding}"
 
-    os.rename(file, newName)
+def searchdir(directory=None, file=None):
+    """Searches a directory for a file.
 
-def searchdir(directory=None, filetype=None):
+    Parameters
+    ----------
+    file : str
+        The file name to search for.
+    directory : str
+        The directory to search.
 
+    Returns
+    -------
+    bool
+        True if the file is found. False if it is not.
+    """
     if directory is None:
-        raise ValueError("You haven't specified a directory to search in. Usage: spyll.list(directory='directory_here', filetype=None)")
-        return
+        raise ValueError("Directory not specified.")
 
+    if file is None:
+        raise ValueError("File not specified.")
 
     directoryList = os.listdir(directory)
 
-    if filetype is None:
-        new_directoryList = directoryList
-    else:
-        new_directoryList=[]
-        for i in directoryList:
-            filename = i.split(".")
-            if filename[-1] == filetype:
-                new_directoryList.append(i)
-
-    return new_directoryList
-
-def size(file=None, total=None):
-    os.chdir(os.getcwd())
-    if type(file) == str:
-        return os.path.getsize(file)
-
-
-    if type(file) == list or type(file) == tuple:
-        if total is None or total is False:
-            sizes=[]
-            for i in file:
-
-                sizes.append(os.path.getsize(i))
-
-            return sizes
-
-        elif total is True:
-            total_size=0
-            for i in file:
-                total_size+=os.path.getsize(i)
-            return total_size
-
-def copy(file=None, directory=None, extension=None):
-    if file is None:
-        raise ValueError("You haven't specified a file to copy over. Usage: spyll.copy(file = 'file_directory', directory='directory_here', extension=None)")
-        return
-
-    if directory is None:
-        raise ValueError("You haven't specified a directory to copy to. Usage: spyll.copy(file = 'file_directory', directory='directory_here', extension=None)")
-        return
-
-    if directory[-1] != "/":
-        directory+="/"
-
-    if extension is None:
-        shutil.copyfile(file, directory)
-    else:
-        filename = file.split("/")[-1]
-        filetype = filename.split(".")[-1]
-        filename = filename.split(".")[0:-1]
-        newname = ""
-        for i in filename:
-            if len(filename) - (filename.index(i)) == 1:
-                newname+=f"{i}"
-            else:
-                newname+=f"{i}."
-        directory = f"{directory}{newname}{extension}.{filetype}"
-
-        shutil.copyfile(file, directory)
-
-def cut(file=None, directory=None, extension=None):
-    if file is None:
-        raise ValueError("You haven't specified a file to copy over. Usage: spyll.cut(file = 'file_directory', directory='directory_here', extension=None)")
-        return
-
-    if directory is None:
-        raise ValueError("You haven't specified a directory to copy to. Usage: spyll.cut(file = 'file_directory', directory='directory_here', extension=None)")
-        return
-
-    if directory[-1] != "/":
-        directory+="/"
-
-    if extension is None:
-        shutil.move (file, directory)
-    else:
-        filename = file.split("/")[-1]
-        filetype = filename.split(".")[-1]
-        filename = filename.split(".")[0:-1]
-        newname = ""
-        for i in filename:
-            if len(filename) - (filename.index(i)) == 1:
-                newname+=f"{i}"
-            else:
-                newname+=f"{i}."
-        directory = f"{directory}{newname}{extension}.{filetype}"
-
-        shutil.move(file, directory)
+    return file in directoryList
