@@ -1,5 +1,4 @@
 import os
-import shutil
 
 
 def read(file=None, split=None):
