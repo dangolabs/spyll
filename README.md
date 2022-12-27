@@ -26,4 +26,4 @@ To clone the repository, run the following command:
 
 ---
 
-[![Dango Labs](https://dangolabs.com/assets/images/dangolabs/dangolabs-color.png)](https://dangolabs.com)
+[![Dango Labs](https://dangolabs.com/assets/images/dangolabs/dangolabs-color-1000.png)](https://dangolabs.com)
